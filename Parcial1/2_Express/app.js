@@ -16,21 +16,20 @@ function middlewareValidador(req, res, next) {
   next();
 }
 
-
 app.get('/', (req,res)=>{
-    res.json({"message":"Hola mundo"})
+    res.json({"message":"Esta respondiendo a una peticion get"})
 });
 
 app.post('/',middlewareValidador, (req,res)=>{
-   res.json({"message":"Hola mundo"})
+   res.json({"message":"Hola Esta respondiendo a una peticion post"})
 });
 
 app.put('/', (req,res)=>{
-    res.json({"message":"Hola mundo"})
+    res.json({"message":"Esta respondiendo a una peticion put"})
 });
 
 app.delete('/', (req,res)=>{
-    res.json({"message":"Hola mundo"})
+    res.json({"message":"Esta respondiendo a una peticion delete"})
 });
 
 
