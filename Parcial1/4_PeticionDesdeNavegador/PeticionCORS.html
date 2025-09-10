@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    
+    <h1>Prueba de CORS</h1>
+    
+    <hr>
+
+    <div>
+        <h3>Peticion fetch con javascript</h3>
+        <button onclick="PruebaCORS()">Validar respuesta</button>
+        <p id="respuesta"></p>
+    </div>
+    
+    <hr>
+    
+    <div>
+        <h3> Peticion fetch con un formulario</h3>
+        <form target="respuesta" action="http://localhost:3000/clientes" method="get">
+            <button type="submit">PeticionForms</button>
+        </form>
+        <iframe name="respuesta" src="" frameborder="0"></iframe>
+    </div>
+    <script>
+        // fetch("http://localhost:3000/clientes")
+        // .then(response=>esponse.text)
+        // .then(data=>console.log(data))
+        // .catch(error=>console.log('error en el fetch'))
+
+        async function PruebaCORS(params) {
+
+            const p = document.getElementById('respuesta')
+
+            try {
+                let response = await fetch("http://localhost:3000/clientes", { 
+                method: "GET",
+                });
+    
+                let data = await response.json();
+                console.log(data);
+                p.innerText=data.message
+            } catch (error) {
+                p.innerText=error
+            }
+
+
+        }
+        
+    </script>
+
+</body>
+</html>
