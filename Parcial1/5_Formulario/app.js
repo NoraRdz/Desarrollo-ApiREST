@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
 
+const { upload } = require('./middleware/multer');
 
 const port = 3000
 
@@ -13,12 +14,12 @@ app.use(cors())
 
 const clientes = require('./router/clientes');
 const proveedores = require('./router/proveedores');
-const plataformas = require('./router/plataforma');
+const subirArchivo = require('./router/subirArchivo');
 
 app.use(morgan('tiny'))
+app.use('/subirArchivo',upload.single('archivo'),subirArchivo)
 app.use('/clientes',clientes.router)
 app.use('/proveedores',proveedores.router)
-app.use('/plataformas',plataformas.router)
 
 
 app.listen(port, ()=>{

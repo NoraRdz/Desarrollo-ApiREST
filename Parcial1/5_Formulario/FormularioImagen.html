@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <form action="" method="post" id="formulario" enctype="multipart/form-data">
+        <label for="archivo">Selecciona una imagen:</label>
+        <input type="file" id="archivo" name="archivo" accept="image/*" required>
+        <br><br>
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        document.getElementById('formulario').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita el envío del formulario por defecto
+
+            const formData = new FormData(this);
+
+            fetch('http://localhost:3000/subirArchivo', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Éxito:', data);
+                alert('Archivo subido correctamente');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error al subir el archivo');
+            });
+        });
+    </script>
+</body>
+</html>
