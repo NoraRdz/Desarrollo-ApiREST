@@ -5,7 +5,7 @@ const morgan = require('morgan');
 
 const { upload } = require('./middleware/multer');
 
-const port = 3000
+const port = 3001
 
 // app.use(upload.single('archivo'))
 // app.use(upload.none())
@@ -23,5 +23,5 @@ app.use('/proveedores',proveedores.router)
 
 
 app.listen(port, ()=>{
-    console.log("server corriendo en http://localhost:3000")
+    console.log(`Server corriendo en http://localhost:${port}`)
 })
